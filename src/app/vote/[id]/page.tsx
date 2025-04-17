@@ -9,7 +9,7 @@ type Option = {
   votes: number;
 };
 
-const PollPage = () => {
+const VotePage = () => {
   const params = useParams<{ id: string }>();
   const [title, setTitle] = useState<string>("");
   const [options, setOptions] = useState<Option[]>([]);
@@ -117,4 +117,4 @@ const PollPage = () => {
   );
 };
 
-export default PollPage;
+export default VotePage;
