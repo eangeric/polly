@@ -37,8 +37,8 @@ export const Generate = ({ text, options }: GenerateProps) => {
       return;
     }
 
-    console.log(`${process.env.NEXT_PUBLIC_BASE_URL}/vote/${poll.id}`);
-    setGenerated(`${process.env.NEXT_PUBLIC_BASE_URL}/vote/${poll.id}`);
+    const baseUrl = window.location.origin;
+    setGenerated(`${baseUrl}/vote/${poll.id}`);
   };
 
   return (
