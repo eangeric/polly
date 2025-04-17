@@ -13,6 +13,12 @@ export const Generate = ({ text, options }: GenerateProps) => {
 
   // Create link
   const generateLink = async () => {
+    // title is not empty and at least one element is not empty string in options
+    if (!text.trim() || !options.some((opt) => opt.trim() !== "")) {
+      console.error("Title or options missing.");
+      return;
+    }
+
     const { data: poll, error: pollError } = await supabase
       .from("poll")
       .insert({ title: text })
