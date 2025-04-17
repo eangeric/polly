@@ -17,37 +17,27 @@ const PollPage = () => {
   const [voted, setVoted] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
 
-  setLoading(true);
-  const loadPoll = async () => {
-    const { data, error } = await supabase
-      .from("poll")
-      .select()
-      .eq("id", params.id)
-      .single();
-
-    if (error) {
-      console.error(error);
-    } else {
-      setTitle(data.title);
-    }
-  };
-
-  const loadOptions = async () => {
-    const { data, error } = await supabase
-      .from("option")
-      .select()
-      .eq("poll_id", params.id);
-
-    if (error) {
-      console.error(error);
-    } else {
-      setOptions(data);
-    }
-  };
-
   useEffect(() => {
+    setLoading(true);
+
+    const loadPoll = async () => {
+      const { data, error } = await supabase
+        .from("poll")
+        .select()
+        .eq("id", params.id)
+        .single();
+      if (!error && data) setTitle(data.title);
+    };
+
+    const loadOptions = async () => {
+      const { data, error } = await supabase
+        .from("option")
+        .select()
+        .eq("poll_id", params.id);
+      if (!error && data) setOptions(data);
+    };
+
     const load = async () => {
-      setLoading(true);
       await loadPoll();
       await loadOptions();
       setLoading(false);
