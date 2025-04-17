@@ -20,7 +20,7 @@ export const Option = ({
       className="bg-white text-black"
       value={value}
       placeholder={`Option ${index + 1}`}
-      disabled={!isLast}
+      // disabled={!isLast}
       onChange={(e) => onChange(e.target.value)}
     />
     {!isLast && (

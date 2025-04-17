@@ -37,7 +37,8 @@ export const Generate = ({ text, options }: GenerateProps) => {
       return;
     }
 
-    setGenerated(`http://localhost:3000/poll/${poll.id}`);
+    console.log(`${process.env.NEXT_PUBLIC_BASE_URL}/vote/${poll.id}`);
+    setGenerated(`${process.env.NEXT_PUBLIC_BASE_URL}/vote/${poll.id}`);
   };
 
   return (
@@ -45,7 +46,7 @@ export const Generate = ({ text, options }: GenerateProps) => {
       <button className="bg-blue-700" onClick={generateLink}>
         Create poll
       </button>
-      {generated && <Link href={generated}>{generated}</Link>}
+      <div>{generated && <Link href={generated}>{generated}</Link>}</div>
     </div>
   );
 };
